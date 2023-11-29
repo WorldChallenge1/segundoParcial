@@ -1,0 +1,41 @@
+<nav class="navbar navbar-light bg-dark">
+  <div class="container-fluid">
+    <h2 class="text-light primary py-3">Tests</h2>
+
+    <div class="d-flex">
+      <a class="btn btn-success" routerLink="/tests/add">Agregar test</a>
+    </div>
+  </div>
+</nav>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Iniciales</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Activo</th>
+        <th scope="col">Numero de partes</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let test of tests">
+        <th scope="row">{{ test.id }}</th>
+        <td>{{ test.name }}</td>
+        <td>{{ test.initials }}</td>
+        <td>{{ test.description }}</td>
+        <td>{{ test.isActive }}</td>
+        <td>{{ test.partCount }}</td>
+        <td>
+          <div class="container-fluid d-flex justify-content-between">
+            <button class="btn btn-primary" routerLink="/tests/edit/{{ test.id }}">Editar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

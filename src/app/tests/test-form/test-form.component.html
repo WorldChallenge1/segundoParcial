@@ -1,0 +1,66 @@
+<form class="container-fluid justify-content-center" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="mb-3">
+        <!-- name -->
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+        <div *ngIf="testForm.get('name')?.invalid && (testForm.get('name')?.dirty || testForm.get('name')?.touched)" class="alert alert-danger">
+          El nombre es obligatorio
+        </div>
+      </div>
+      <div class="mb-3">
+        <!-- initials -->
+        <label for="initials" class="form-label">Iniciales</label>
+        <input type="text" class="form-control" id="initials" formControlName="initials">
+        <div *ngIf="testForm.get('initials')?.invalid && (testForm.get('initials')?.dirty || testForm.get('initials')?.touched)" class="alert alert-danger">
+          Las iniciales son obligatorias
+        </div>
+      </div>
+      <div class="mb-3">
+        <!-- description -->
+        <label for="description" class="form-label">Descripción</label>
+        <input type="text" class="form-control" id="description" formControlName="description">
+        <div *ngIf="testForm.get('description')?.invalid && (testForm.get('description')?.dirty || testForm.get('description')?.touched)" class="alert alert-danger">
+          La descripción es obligatoria
+        </div>
+      </div>
+      <div *ngIf="testForm.get('isActive')" class="mb-3">
+        <!-- isActive -->
+        <div class="form-check form-switch">
+          <label for="isActive" class="form-label">Activo</label>
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" formControlName="isActive">
+        </div>
+      </div>
+      <div *ngIf="testForm.get('partCount')" class="mb-3">
+        <!-- partCount -->
+        <label for="partCount" class="form-label">Numero de partes</label>
+        <input type="number" class="form-control" id="partCount" formControlName="partCount" min="0">
+        <div *ngIf="testForm.get('partCount')?.invalid && (testForm.get('partCount')?.dirty || testForm.get('partCount')?.touched)" class="alert alert-danger">
+          El numero de partes es obligatorio
+        </div>
+      </div>
+
+
+      <ng-container *ngIf="this.isValid(); else elseTemplate">
+        <ng-container *ngIf="this.editMode; else elseTemplate">
+          <button type="submit" class="btn btn-primary">Actualizar test</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button type="submit" class="btn btn-primary">Agregar test</button>
+        </ng-template>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <ng-container *ngIf="this.editMode; else elseTemplate">
+          <button type="submit" class="btn btn-primary" disabled>Actualizar test</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button type="submit" class="btn btn-primary" disabled>Agregar test</button>
+        </ng-template>
+      </ng-template>
+
+    </div>
+    <div class="col-3"></div>
+  </div>
+</form>
